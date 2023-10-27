@@ -2,7 +2,6 @@
 const connection = require("../database/db");
 
 
-
    const postdata = (req, res) => {
     const { firstname, lastname, phone } = req.body;
 
@@ -18,25 +17,29 @@ const connection = require("../database/db");
   };
   module.exports =postdata;
 
-// app.get('/api', (req, res) => {
-//     const sql = 'SELECT * FROM names'
+  const getdata= (req, res) => {
+    const sql = 'SELECT * FROM names'
     
-//     connection.query(sql, (err, result) => {
-//         if (err) throw err;
-//         res.send(result);
-//     });
-// });
+    connection.query(sql, (err, result) => {
+        if (err) throw err;
+        res.send(result);
+    });
+};
+module.exports = getdata;
 
-// app.post('/create', (req, res) => {
-//     const { firstname, lastname, phone } = req.body;
 
-//     const sql = 'INSERT INTO names (firstname, lastname, phone) VALUES ?';
-//     const values = [
-//         [firstname, lastname, phone]
-//     ];
+const deletedata = (req, res) => {
+    const {id} = req.body.id;
 
-//     connection.query(sql, [values], (err, result) => {
-//         if (err) throw err;
-//         res.send('Data inserted successfully');
-//     });
-// });
+    let sql = "DELETE FROM names WHERE id = ?";
+    const values= [
+        [id]
+    ]
+
+    connection.query(sql,[values], (err, result) => {
+        if (err) throw err;
+        res.send('data khtm');
+    });
+};
+module.exports = deletedata;
+

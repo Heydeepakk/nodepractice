@@ -1,12 +1,12 @@
 
     const express = require('express')
     const postdata = require('../controller/controller')
-
-    // import {postdata} from "../controller/controller"  
+    const getdata = require('../controller/controller')
+    const deletedata = require('../controller/controller')
 
     const router = express.Router();
     router.post("/post",postdata);
-    // app.get("/get", namedata.findAll);
-    // app.get("/find", namedata.findOne);
+    router.get("/get", getdata);
+    router.delete("/delete", deletedata);
 
 module.exports= router
